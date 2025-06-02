@@ -225,8 +225,8 @@
     </style>
   </head>
   <body>
-
-    <h1>Já se passaram...</h1>
+    <div class="relogio-box">
+      <h1>Já se passaram...</h1>
       <div class="relogio-container">
         <div class="bloco">
           <div class="valor" id="dias">0</div>
@@ -247,7 +247,7 @@
       </div>
       <h1>... Desde aquele dia</h1>
     </div>
-    
+
     <div class="game-box">
       <h1>Clique para me dar um beijinho 😘</h1>
       <div class="box-header">
@@ -267,12 +267,12 @@
           style="display: none; position: absolute; width: 100px"
         />
       </div>
+      <audio src="assets/beijo.mp3" id="kiss"></audio>
     </div>
 
-    <div class="relogio-box">
-      <div class="linha-decorativa">
-        <span>💐</span> <span>❤️</span> <span>💐</span>
-      </div>
+    <div class="linha-decorativa">
+      <span>💐</span> <span>❤️</span> <span>💐</span>
+    </div>
 
     <h1 style="color: #e91e63">Clique na carta pra abrir</h1>
 
@@ -456,20 +456,27 @@
         }, 1000);
       }
 
+
       document
         .getElementById("target")
         .addEventListener("click", function (event) {
           const kissEmoji = document.createElement("span");
           kissEmoji.textContent = "💋";
           kissEmoji.style.position = "absolute";
-          kissEmoji.style.left = event.clientX + "px";
-          kissEmoji.style.top = event.clientY + "px";
+
+          // Corrigir a posição relativa ao gameArea
+          const rect = gameArea.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const y = event.clientY - rect.top;
+
+          kissEmoji.style.left = x + "px";
+          kissEmoji.style.top = y + "px";
           kissEmoji.style.fontSize = "30px";
           kissEmoji.style.pointerEvents = "none";
           kissEmoji.style.animation = "fadeOut 1s forwards";
-          kissEmoji.style.transform = "translate(-50%, -50%)"; // Centraliza no clique
+          kissEmoji.style.transform = "translate(-50%, -50%)";
 
-          document.body.appendChild(kissEmoji);
+          gameArea.appendChild(kissEmoji);
 
           setTimeout(() => {
             kissEmoji.remove();
