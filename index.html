@@ -2,8 +2,11 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <meta property="og:title" content="Carta para você"/>
-    <meta property="og:description" content="Esse site foi feito com muito carinho e emprenho para você">
+    <meta property="og:title" content="Carta para você" />
+    <meta
+      property="og:description"
+      content="Esse site foi feito com muito carinho e emprenho para você"
+    />
     <title>Carta de Namorados</title>
     <script src="https://unpkg.com/lottie-web@5.7.4/build/player/lottie.min.js"></script>
     <link
@@ -15,6 +18,18 @@
       rel="stylesheet"
     />
     <style>
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+          transform: scale(1);
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1.5);
+          transform: translateY(-40px);
+        }
+      }
       body {
         font-family: "Poppins", sans-serif;
         background: #f8d0d0;
@@ -210,11 +225,8 @@
     </style>
   </head>
   <body>
-    <div class="relogio-box">
-      <div class="linha-decorativa">
-        <span>💐</span> <span>❤️</span> <span>💐</span>
-      </div>
-      <h1>Já se passaram...</h1>
+
+    <h1>Já se passaram...</h1>
       <div class="relogio-container">
         <div class="bloco">
           <div class="valor" id="dias">0</div>
@@ -233,9 +245,9 @@
           <div class="label">Segundos</div>
         </div>
       </div>
-      <h1>...Desde aquele dia</h1>
+      <h1>... Desde aquele dia</h1>
     </div>
-
+    
     <div class="game-box">
       <h1>Clique para me dar um beijinho 😘</h1>
       <div class="box-header">
@@ -254,11 +266,13 @@
           alt="Casal"
           style="display: none; position: absolute; width: 100px"
         />
-        <audio id="kiss" src="assets/beijo.mp3" autoplay="false"></audio>
       </div>
     </div>
 
-    
+    <div class="relogio-box">
+      <div class="linha-decorativa">
+        <span>💐</span> <span>❤️</span> <span>💐</span>
+      </div>
 
     <h1 style="color: #e91e63">Clique na carta pra abrir</h1>
 
@@ -286,15 +300,15 @@
     <script>
       const textoCarta = `feliz dia dos namorados meu amor!!
 
-        primeiramente, quero agradecer por você ser o melhor namorado do mundo todo, eu não poderia me sentir mais feliz por te ter ao meu lado todos os dias amor.
-to escrevendo isso aqui enquanto você está trabalhando, e aproveitando o gancho, quero dizer o quanto vejo em você um homem esforçado, dedicado e que luta pelo o que quer, e me sinto tão feliz em saber que seu esforço todos os dias também é pela gente, me sinto muito sortuda em te ter, e agradeço a Deus todos os dias pela sua vida, e ainda mais, por Ele ter feito as nossas se cruzarem em uma só linha pra gente caminhar juntos.
-te amo em cada rolezinho na asces que a gente deu, cada partida de sinuca jogada, cada filme que a gente assistiu, cada abraço apertado depois de mais de 24hrs sem se ver (uma eternidade) cada carinho na mão e em cada significado que a gente deu pra palavras inventados pro nosso dicionário, só que o que eu não imaginava, é que eu ia descobrir que o significado da palavra "amor" era: você. 
-não é atoa que te chamo de amor, vc me trouxe o significado dessa palavra da forma mais linda de todas.
-você me faz a menina mais feliz do mundo todos os dias amor, me tira sorrisos de onde as vezes eu achava que nem tinha, me ensinou o que é ser amada de verdade e melhor ainda: me trouxe o sentimento de segurança e conforto que eu nem sabia que dava pra encontrar tanto em alguém. você é meu porto seguro, é onde quero ir quando estou triste ou feliz, e é onde quero permanecer pro resto da vida.
-você é com quem eu quero dividir minha vida, construir a nossa juntos e viver ela felizes, como tanto planejamos, sempre juntos.
+              primeiramente, quero agradecer por você ser o melhor namorado do mundo todo, eu não poderia me sentir mais feliz por te ter ao meu lado todos os dias amor.
+      to escrevendo isso aqui enquanto você está trabalhando, e aproveitando o gancho, quero dizer o quanto vejo em você um homem esforçado, dedicado e que luta pelo o que quer, e me sinto tão feliz em saber que seu esforço todos os dias também é pela gente, me sinto muito sortuda em te ter, e agradeço a Deus todos os dias pela sua vida, e ainda mais, por Ele ter feito as nossas se cruzarem em uma só linha pra gente caminhar juntos.
+      te amo em cada rolezinho na asces que a gente deu, cada partida de sinuca jogada, cada filme que a gente assistiu, cada abraço apertado depois de mais de 24hrs sem se ver (uma eternidade) cada carinho na mão e em cada significado que a gente deu pra palavras inventados pro nosso dicionário, só que o que eu não imaginava, é que eu ia descobrir que o significado da palavra "amor" era: você.
+      não é atoa que te chamo de amor, vc me trouxe o significado dessa palavra da forma mais linda de todas.
+      você me faz a menina mais feliz do mundo todos os dias amor, me tira sorrisos de onde as vezes eu achava que nem tinha, me ensinou o que é ser amada de verdade e melhor ainda: me trouxe o sentimento de segurança e conforto que eu nem sabia que dava pra encontrar tanto em alguém. você é meu porto seguro, é onde quero ir quando estou triste ou feliz, e é onde quero permanecer pro resto da vida.
+      você é com quem eu quero dividir minha vida, construir a nossa juntos e viver ela felizes, como tanto planejamos, sempre juntos.
 
 
-        eu te amo por demaize,meu menino ❤`;
+              eu te amo por demaize,meu menino ❤`;
 
       const animation = lottie.loadAnimation({
         container: document.getElementById("envelope-animation"),
@@ -442,10 +456,29 @@ você é com quem eu quero dividir minha vida, construir a nossa juntos e viver 
         }, 1000);
       }
 
+      document
+        .getElementById("target")
+        .addEventListener("click", function (event) {
+          const kissEmoji = document.createElement("span");
+          kissEmoji.textContent = "💋";
+          kissEmoji.style.position = "absolute";
+          kissEmoji.style.left = event.clientX + "px";
+          kissEmoji.style.top = event.clientY + "px";
+          kissEmoji.style.fontSize = "30px";
+          kissEmoji.style.pointerEvents = "none";
+          kissEmoji.style.animation = "fadeOut 1s forwards";
+          kissEmoji.style.transform = "translate(-50%, -50%)"; // Centraliza no clique
+
+          document.body.appendChild(kissEmoji);
+
+          setTimeout(() => {
+            kissEmoji.remove();
+          }, 1000);
+        });
+
       target.addEventListener("click", () => {
         score++;
         scoreDisplay.textContent = score;
-        kissSound.play();
         moveTarget(); // Move imediatamente após clique
       });
 
